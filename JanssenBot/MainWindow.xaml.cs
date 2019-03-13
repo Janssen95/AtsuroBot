@@ -24,7 +24,7 @@ namespace JanssenBot
         StreamReader reader;
         StreamWriter writer;
         
-        private string username;
+        public static string username;
         private string password;
         DispatcherTimer timer;
 
@@ -43,7 +43,6 @@ namespace JanssenBot
                 password = win.PassBox.Text;
             }
             Reconnect();
-
             Timer();
         }
 
@@ -117,13 +116,12 @@ namespace JanssenBot
 
         private void NewMatch_Click(object sender, RoutedEventArgs e)
         {
-            writer.WriteLine("/QUERY BanchoBot !mp make To!M");
             MatchRoom newMatch = new MatchRoom(reader, writer, client);
         }
 
         private void JoinOsu_Click(object sender, RoutedEventArgs e)
         {
-            writer.WriteLine("JOIN #osu");
+            writer.WriteLine("JOIN #spanish");
             writer.Flush();
         }
     }

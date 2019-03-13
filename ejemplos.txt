@@ -1,0 +1,7 @@
+:Psycopath-!cho@ppy.sh PRIVMSG Atsuro :es hoy 7u7
+:Psycopath-!cho@ppy.sh PRIVMSG Atsuro :no es hoy
+:Psycopath-!cho@ppy.sh PRIVMSG Atsuro ::c
+
+:sthefano_gab!cho@ppy.sh PRIVMSG #spanish ::V
+
+PING cho.ppy.sh

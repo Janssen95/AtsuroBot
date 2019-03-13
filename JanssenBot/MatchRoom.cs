@@ -18,6 +18,8 @@ namespace JanssenBot
         TcpClient client;
         DispatcherTimer timer;
         MatchWindow window;
+        string channel = string.Empty;
+        bool gotMpKey = false;
 
         public MatchRoom(StreamReader reader, StreamWriter writer, TcpClient client)
         {
@@ -25,6 +27,8 @@ namespace JanssenBot
             this.writer = writer;
             this.client = client;
             window = new MatchWindow();
+            CreateMatch();
+            Timer();
             window.Show();
         }
 
@@ -32,7 +36,8 @@ namespace JanssenBot
         {
             if (client.Connected)
             {
-                writer.WriteLine("/msg BanchoBot !mp create To!M");
+                writer.WriteLine(ircLib.PrivMessageString("!mp make lol", "BanchoBot"));
+                writer.Flush();
             }
         }
 
@@ -62,6 +67,14 @@ namespace JanssenBot
             if (client.Available > 0 || reader.Peek() >= 0)
             {
                 string message = reader.ReadLine();
+                if (!gotMpKey)
+                {
+                    if (message.Contains("BanchoBot"))
+                    {
+                        ircLib.GetChannel(message);
+                        gotMpKey = true;
+                    }
+                }
                 PrintMessage(message, window.ircBox);
             }
         }
