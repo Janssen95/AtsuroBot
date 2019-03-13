@@ -11,7 +11,9 @@ namespace JanssenBot
 {
     public static class ircLib
     {
+        //public string MessageString(string message, string channel)
+        //{
 
-        
+        //}
     }
 }
