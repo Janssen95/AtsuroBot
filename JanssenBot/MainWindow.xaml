@@ -27,9 +27,6 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height=".5*"/>
         </Grid.RowDefinitions>
-        <TabControl Grid.Column="0" Grid.Row="0" Grid.RowSpan="8" Name="Tabs">
-            
-        </TabControl>
         <TextBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="6" Name="ircBox" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
         <Button Name="NewMatch" Grid.Row="6" Grid.Column="3" Content="Nueva Match" Click="NewMatch_Click"/>
         <Button Name="JoinOsu" Grid.Row="4" Grid.Column="3" Content="osu!" Click="JoinOsu_Click"/>

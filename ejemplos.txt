@@ -5,3 +5,5 @@
 :sthefano_gab!cho@ppy.sh PRIVMSG #spanish ::V
 
 PING cho.ppy.sh
+
+:BanchoBot!cho@cho.ppy.sh MODE #mp_50237430 +v Atsuro

@@ -20,11 +20,10 @@ namespace JanssenBot
 {
     public partial class MainWindow : Window
     {
-        TcpClient client;
-        StreamReader reader;
-        StreamWriter writer;
-        
-        public static string username;
+        public static TcpClient client;
+        public static StreamReader reader;
+        public static StreamWriter writer;
+        private string username;
         private string password;
         DispatcherTimer timer;
 
@@ -42,19 +41,8 @@ namespace JanssenBot
                 username = win.UserBox.Text;
                 password = win.PassBox.Text;
             }
-            Reconnect();
+            ircLib.Reconnect(username, password);
             Timer();
-        }
-
-        private void Reconnect()
-        {
-            client = new TcpClient("irc.ppy.sh", 6667);
-            reader = new StreamReader(client.GetStream());
-            writer = new StreamWriter(client.GetStream());
-            writer.WriteLine("PASS " + password + Environment.NewLine
-                    + "NICK " + username + Environment.NewLine
-                    + "USER " + username + " 8 * :" + username);
-            writer.Flush();
         }
 
         private void Timer()
@@ -72,51 +60,21 @@ namespace JanssenBot
 
             if (!client.Connected)
             {
-                Reconnect();
+                ircLib.Reconnect(username, password);
             }
 
             if (client.Connected)
             {
-                GetMessage();
+                string message = ircLib.GetMessage();
+                ircLib.PrintMessage(message, ircBox);
             }
 
             timer.Start();
         }
 
-        private void GetMessage()
-        {
-            if (client.Available > 0 || reader.Peek() >= 0)
-            {
-                string message = reader.ReadLine();
-                PrintMessage(message, ircBox);
-            }
-        }
-
-        private void PrintMessage(string message, TextBox box)
-        {
-            if(message.Contains("!cho@ppy.sh QUIT"))
-            {
-            }
-            else
-            {
-                box.Text += $"\r\n{message}";
-                box.ScrollToEnd();
-            }
-        }
-
-        private void NewTextBox()
-        {
-            TabItem newTabItem = new TabItem
-            {
-                Header = "Test",
-                Name = "Test"
-            };
-            Tabs.Items.Add(newTabItem);
-        }
-
         private void NewMatch_Click(object sender, RoutedEventArgs e)
         {
-            MatchRoom newMatch = new MatchRoom(reader, writer, client);
+            MatchRoom newMatch = new MatchRoom();
         }
 
         private void JoinOsu_Click(object sender, RoutedEventArgs e)
