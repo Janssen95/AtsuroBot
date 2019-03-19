@@ -15,13 +15,13 @@ namespace JanssenBot
     {
         enum botState {playersNotInRoom, waitingWarmUpPick, playing, rolling, banning, waitingPlayerPick, matchDone}
         botState currentState = botState.playersNotInRoom;
-        string channel = string.Empty;
+        public int channel = 0;
         string teamOne = string.Empty;
         string teamTwo = string.Empty;
         string rollWinner = string.Empty;
         int bestOf;
 
-        public MatchRoom(string teamOne, string teamTwo, string matchName, int bestOf)
+        public MatchRoom(int matchNumber, string teamOne, string teamTwo, string matchName, int bestOf)
         {
             this.teamOne = teamOne;
             this.teamTwo = teamTwo;
@@ -30,32 +30,34 @@ namespace JanssenBot
             Main();
         }
 
-        private void Main()
+        public void Main()
         {
-            switch (currentState)
+            if(channel != 0)
             {
-                case botState.playersNotInRoom:
-                    invitePlayers();
-                    break;
-                case botState.waitingWarmUpPick:
-                    break;
-                case botState.rolling:
-                    break;
-                case botState.banning:
-                    break;
-                case botState.waitingPlayerPick:
-                    break;
-                case botState.playing:
-                    break;
-                case botState.matchDone:
-                    break;
+                switch (currentState)
+                {
+                    case botState.playersNotInRoom:
+                        invitePlayers();
+                        break;
+                    case botState.waitingWarmUpPick:
+                        break;
+                    case botState.rolling:
+                        break;
+                    case botState.banning:
+                        break;
+                    case botState.waitingPlayerPick:
+                        break;
+                    case botState.playing:
+                        break;
+                    case botState.matchDone:
+                        break;
+                }
             }
         }
 
         private void invitePlayers()
         {
             APIThing.GetInfo(channel);
-            Main();
         }
     }
 }

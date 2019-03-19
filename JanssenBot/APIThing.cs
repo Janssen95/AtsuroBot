@@ -9,7 +9,7 @@ namespace JanssenBot
 {
     public class APIThing
     {
-        public static async void GetInfo(string channel)
+        public static async void GetInfo(int channel)
         {
             string page = $"https://osu.ppy.sh/api/get_match?k={MainWindow.apiKey}&mp={channel}";
 

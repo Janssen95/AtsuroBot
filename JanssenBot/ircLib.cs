@@ -53,6 +53,14 @@ namespace JanssenBot
                 {
                     return null;
                 }
+                else if (message.Contains("Created the tournament match"))
+                {
+                    MainWindow.matches[MainWindow.matches.Count-1].channel = int.Parse(GetCreatedChannel(message));
+                    string[] compMessage = new string[2];
+                    compMessage[0] = GetSender(message);
+                    compMessage[1] = GetMessage(message);
+                    return compMessage;
+                }
                 else if(message.Contains("PRIVMSG #"))
                 {
                     string[] compMessage = new string[3];
@@ -154,6 +162,13 @@ namespace JanssenBot
             }
 
             return directive;
+        }
+
+        public static string GetCreatedChannel(string message)
+        {
+            string channel = message.Split('/')[4];
+            channel = channel.Split(' ')[0];
+            return channel;
         }
 
         public static void CreateMatch(string matchName) //Envia un mensaje a banchobot para que se abra un cuarto de multi

@@ -26,7 +26,9 @@ namespace JanssenBot
         private string username;
         private string password;
         public static string apiKey;
-        DispatcherTimer timer;
+        public static List<MatchRoom> matches = new List<MatchRoom>();
+        DispatcherTimer MessageTimer;
+        DispatcherTimer MatchTimer;
 
         public MainWindow()
         {
@@ -44,19 +46,20 @@ namespace JanssenBot
                 apiKey = win.ApiBox.Text;
             }
             ircLib.Reconnect(username, password);
-            Timer();
+            MessagesTimer();
+            MatchesTimer();
         }
 
-        private void Timer() //Inicia el timer para que cada cierto tiempo se revise si llegan mensajes
+        private void MessagesTimer() //Inicia el timer para que cada cierto tiempo se revise si llegan mensajes
         {
-            timer = new DispatcherTimer();
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 25);
-            timer.IsEnabled = true;
-            timer.Start();
+            MessageTimer = new DispatcherTimer();
+            MessageTimer.Tick += new EventHandler(MessagesTimer_Tick);
+            MessageTimer.Interval = new TimeSpan(0, 0, 0, 0, 25);
+            MessageTimer.IsEnabled = true;
+            MessageTimer.Start();
         }
 
-        private void timer_Tick(object sender, EventArgs e) //cada que transcurra el tiempo establecido, se ejecuta esta función
+        private void MessagesTimer_Tick(object sender, EventArgs e) //cada que transcurra el tiempo establecido, se ejecuta esta función
         {
             if (!client.Connected)
             {
@@ -70,11 +73,28 @@ namespace JanssenBot
             }
         }
 
+        private void MatchesTimer() //Inicia el timer para que cada cierto tiempo se revise el estado de las matches
+        {
+            MatchTimer = new DispatcherTimer();
+            MatchTimer.Tick += new EventHandler(MatchesTimer_Tick);
+            MatchTimer.Interval = new TimeSpan(0, 0, 0, 10);
+            MatchTimer.IsEnabled = true;
+            MatchTimer.Start();
+        }
+
+        private void MatchesTimer_Tick(object sender, EventArgs e) //cada que transcurra el tiempo establecido, se ejecuta esta función
+        {
+            for(int i = 0; i < matches.Count; i++)
+            {
+                matches[i].Main();
+            }
+        }
+        
         private void NewMatch_Click(object sender, RoutedEventArgs e) //Inicia una instancia de un cuarto de multi
         {
             MatchWindow window = new MatchWindow();
             window.ShowDialog();
-            MatchRoom newMatch = new MatchRoom(window.TeamOne.Text, window.TeamTwo.Text, window.RoomName.Text, int.Parse(window.BestOf.Text));
+            matches.Add(new MatchRoom(matches.Count, window.TeamOne.Text, window.TeamTwo.Text, window.RoomName.Text, int.Parse(window.BestOf.Text)));
         }
 
         private void JoinOsu_Click(object sender, RoutedEventArgs e) //Unirse al canal #spanish, esto es para motivos de pruebas
