@@ -25,6 +25,7 @@ namespace JanssenBot
         public static StreamWriter writer;
         private string username;
         private string password;
+        public static string apiKey;
         DispatcherTimer timer;
 
         public MainWindow()
@@ -40,24 +41,23 @@ namespace JanssenBot
             {
                 username = win.UserBox.Text;
                 password = win.PassBox.Text;
+                apiKey = win.ApiBox.Text;
             }
             ircLib.Reconnect(username, password);
             Timer();
         }
 
-        private void Timer()
+        private void Timer() //Inicia el timer para que cada cierto tiempo se revise si llegan mensajes
         {
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 25);
             timer.IsEnabled = true;
             timer.Start();
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e) //cada que transcurra el tiempo establecido, se ejecuta esta función
         {
-            timer.Stop();
-
             if (!client.Connected)
             {
                 ircLib.Reconnect(username, password);
@@ -65,22 +65,36 @@ namespace JanssenBot
 
             if (client.Connected)
             {
-                string message = ircLib.GetMessage();
+                string[] message = ircLib.GetMessage();
                 ircLib.PrintMessage(message, ircBox);
             }
-
-            timer.Start();
         }
 
-        private void NewMatch_Click(object sender, RoutedEventArgs e)
+        private void NewMatch_Click(object sender, RoutedEventArgs e) //Inicia una instancia de un cuarto de multi
         {
-            MatchRoom newMatch = new MatchRoom();
+            MatchWindow window = new MatchWindow();
+            window.ShowDialog();
+            MatchRoom newMatch = new MatchRoom(window.TeamOne.Text, window.TeamTwo.Text, window.RoomName.Text, int.Parse(window.BestOf.Text));
         }
 
-        private void JoinOsu_Click(object sender, RoutedEventArgs e)
+        private void JoinOsu_Click(object sender, RoutedEventArgs e) //Unirse al canal #spanish, esto es para motivos de pruebas
         {
             writer.WriteLine("JOIN #spanish");
             writer.Flush();
+        }
+
+        private void SendBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Return)
+            {
+                if (client.Connected)
+                {
+                    string send = ircLib.PrivMessageString(SendBox.Text, ChannelBox.Text, true);
+                    SendBox.Text = string.Empty;
+                    writer.WriteLine(send);
+                    writer.Flush();
+                }
+            }
         }
     }
 }

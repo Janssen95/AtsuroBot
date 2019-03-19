@@ -18,13 +18,16 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Get your IRC password at https://osu.ppy.sh/p/irc"/>
         <Label Grid.Column="0" Grid.Row="1" Content="Username: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
         <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" Name="UserBox" VerticalAlignment="Center" Margin="5,0,5,0"/>
         <Label Grid.Column="0" Grid.Row="2" Content="Password: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
         <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Name="PassBox" VerticalAlignment="Center" Margin="5,0,5,0"/>
-        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Name="CancelBtn" Content="Cancel" Margin="10,10,10,10" Click="CancelBtn_Click"/>
-        <Button Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Name="OkBtn" Content="Ok" Margin="10,10,10,10" Click="OkBtn_Click"/>
+        <Label Grid.Column="0" Grid.Row="3" Content="API Key: " VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" Name="ApiBox" VerticalAlignment="Center" Margin="5,0,5,0"/>
+        <Button Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Name="CancelBtn" Content="Cancel" Margin="10,5,10,5" Click="CancelBtn_Click"/>
+        <Button Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" Name="OkBtn" Content="Ok" Margin="10,5,10,5" Click="OkBtn_Click"/>
     </Grid>
 </Window>

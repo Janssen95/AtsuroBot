@@ -27,7 +27,9 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height=".5*"/>
         </Grid.RowDefinitions>
-        <TextBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="6" Name="ircBox" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+        <TextBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="6" Name="ircBox" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+        <TextBox Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" Name="SendBox" KeyDown="SendBox_KeyDown"/>
+        <TextBox Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" Name="ChannelBox" />
         <Button Name="NewMatch" Grid.Row="6" Grid.Column="3" Content="Nueva Match" Click="NewMatch_Click"/>
         <Button Name="JoinOsu" Grid.Row="4" Grid.Column="3" Content="osu!" Click="JoinOsu_Click"/>
     </Grid>
