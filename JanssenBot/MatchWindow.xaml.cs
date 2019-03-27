@@ -19,9 +19,22 @@ namespace JanssenBot
     /// </summary>
     public partial class MatchWindow : Window
     {
+        public bool ok = false;
+
         public MatchWindow()
         {
             InitializeComponent();
+        }
+
+        private void OkBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ok = true;
+            Close();
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

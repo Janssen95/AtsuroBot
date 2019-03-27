@@ -13,19 +13,22 @@ namespace JanssenBot
 {
     public class MatchRoom
     {
+        RoomState roomState;
         enum botState {playersNotInRoom, waitingWarmUpPick, playing, rolling, banning, waitingPlayerPick, matchDone}
         botState currentState = botState.playersNotInRoom;
         public int channel = 0;
         string teamOne = string.Empty;
         string teamTwo = string.Empty;
         string rollWinner = string.Empty;
+        string phase = string.Empty;
         int bestOf;
 
-        public MatchRoom(int matchNumber, string teamOne, string teamTwo, string matchName, int bestOf)
+        public MatchRoom(int matchNumber, string teamOne, string teamTwo, string matchName, string phase, int bestOf)
         {
             this.teamOne = teamOne;
             this.teamTwo = teamTwo;
             this.bestOf = bestOf;
+            this.phase = phase;
             ircLib.CreateMatch(matchName);
             Main();
         }
@@ -57,7 +60,7 @@ namespace JanssenBot
 
         private void invitePlayers()
         {
-            APIThing.GetInfo(channel);
+            roomState = APIThing.GetInfo(channel);
         }
     }
 }

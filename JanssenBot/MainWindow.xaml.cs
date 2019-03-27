@@ -23,7 +23,7 @@ namespace JanssenBot
         public static TcpClient client;
         public static StreamReader reader;
         public static StreamWriter writer;
-        private string username;
+        public static string username;
         private string password;
         public static string apiKey;
         public static List<MatchRoom> matches = new List<MatchRoom>();
@@ -94,13 +94,10 @@ namespace JanssenBot
         {
             MatchWindow window = new MatchWindow();
             window.ShowDialog();
-            matches.Add(new MatchRoom(matches.Count, window.TeamOne.Text, window.TeamTwo.Text, window.RoomName.Text, int.Parse(window.BestOf.Text)));
-        }
-
-        private void JoinOsu_Click(object sender, RoutedEventArgs e) //Unirse al canal #spanish, esto es para motivos de pruebas
-        {
-            writer.WriteLine("JOIN #spanish");
-            writer.Flush();
+            if (window.ok)
+            {
+                matches.Add(new MatchRoom(matches.Count, window.TeamOne.Text, window.TeamTwo.Text, window.RoomName.Text, window.Phase.Text, int.Parse(window.BestOf.Text)));
+            }
         }
 
         private void SendBox_KeyDown(object sender, KeyEventArgs e)
@@ -115,6 +112,11 @@ namespace JanssenBot
                     writer.Flush();
                 }
             }
+        }
+
+        private void MappoolBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

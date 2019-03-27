@@ -53,7 +53,7 @@ namespace JanssenBot
                 {
                     return null;
                 }
-                else if (message.Contains("Created the tournament match"))
+                else if (message.Contains($"BanchoBot!cho@ppy.sh PRIVMSG {MainWindow.username} :Created the tournament match"))
                 {
                     MainWindow.matches[MainWindow.matches.Count-1].channel = int.Parse(GetCreatedChannel(message));
                     string[] compMessage = new string[2];

@@ -70,3 +70,7 @@ D:\C# Projects\AtsuroBot\JanssenBot\obj\Debug\JanssenBot.csproj.GenerateResource
 D:\C# Projects\AtsuroBot\JanssenBot\obj\Debug\JanssenBot.csproj.CoreCompileInputs.cache
 D:\C# Projects\AtsuroBot\JanssenBot\obj\Debug\JanssenBot.exe
 D:\C# Projects\AtsuroBot\JanssenBot\obj\Debug\JanssenBot.pdb
+C:\Users\janss\source\repos\AtsuroBot\JanssenBot\bin\Debug\Newtonsoft.Json.dll
+C:\Users\janss\source\repos\AtsuroBot\JanssenBot\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\janss\source\repos\AtsuroBot\JanssenBot\bin\Debug\Newtonsoft.Json.xml
+C:\Users\janss\source\repos\AtsuroBot\JanssenBot\obj\Debug\JanssenBot.csproj.CopyComplete
