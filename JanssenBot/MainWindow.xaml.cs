@@ -116,7 +116,8 @@ namespace JanssenBot
 
         private void MappoolBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Windows.Mappools window = new Windows.Mappools();
+            window.Show();
         }
     }
 }

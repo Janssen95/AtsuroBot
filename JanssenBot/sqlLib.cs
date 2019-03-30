@@ -18,13 +18,13 @@ namespace JanssenBot
         public static int teamId = 0, teamName = 1, teamCaptain = 2;
         public static int matchId = 0, matchDateTime = 1, matchTeamOne = 2, matchTeamTwo = 3, matchMappool = 4;
         public static int mappoolId = 0, mappoolName=1;
-        public static int mapId = 0, mapIdInPool = 1, mapMapper = 2, mapArtist = 3, mapTitle = 4, mapDifficulty = 5, mapStars = 6, mapLenght = 7, mapBpm = 8, mapMappool = 9;
+        public static int mapId = 0, mapIdInPool = 1, mapMapper = 2, mapArtist = 3, mapTitle = 4, mapDifficulty = 5, mapStars = 6, mapLenght = 7, mapBpm = 8, mapMod = 9, mapMappool = 10;
 
         public static MySqlConnection Connect() //Conecta a la base de datos
         {
             try
             {
-                MySqlConnection conectar = new MySqlConnection("server=127.0.0.1;database=avenida;Uid=root;pwd=ultraxion1995;SslMode=None");
+                MySqlConnection conectar = new MySqlConnection("server=127.0.0.1;database=tourneydb;Uid=root;pwd=ultraxion1995;SslMode=None");
                 conectar.Open();
                 return conectar;
             }
@@ -78,6 +78,8 @@ namespace JanssenBot
             string searchString = "SELECT * FROM " + table + " WHERE " + column + " LIKE " + "'%" + value + "%'";
             return searchString;
         }
+        
+
 
         public static string SearchQueryAll(string table, string value) //Devuelve un query para buscar en todos los campos de una tabla
         {
@@ -96,6 +98,26 @@ namespace JanssenBot
                     searchString = searchString + " OR " + columns[count].ColumnName + " LIKE " + "'%" + value + "%'";
                 }
                 count++;
+            }
+            return searchString;
+        }
+
+        public static string MultipleCondSearchQuery(string table, string[] values, string[] columns)//Busqueda con condiciones multiples
+        {
+            string searchString = "SELECT * FROM " + table;
+            int count = 0;
+            foreach (string value in values)
+            {
+                if (count == 0)
+                {
+                    searchString = searchString + " WHERE " + columns[count] + " = " + CheckString(value);
+                    count++;
+                }
+                else
+                {
+                    searchString = searchString + " AND " + columns[count] + " = " + CheckString(value);
+                    count++;
+                }
             }
             return searchString;
         }
@@ -318,6 +340,7 @@ namespace JanssenBot
             return array;
         }
 
+
         public static string[] GetRowData(string table, string index)
         {
             string[] array;
@@ -406,5 +429,4 @@ namespace JanssenBot
             return dt.Columns.Count;
         }
     }
-}
 }

@@ -60,7 +60,7 @@ namespace JanssenBot
 
         private void invitePlayers()
         {
-            roomState = APIThing.GetInfo(channel);
+            roomState = APIThing.GetRoomInfo(channel);
         }
     }
 }

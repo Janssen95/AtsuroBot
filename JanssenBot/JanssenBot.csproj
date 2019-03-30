@@ -59,6 +59,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="sqlLib.cs" />
+    <Compile Include="Windows\AddMapWindow.xaml.cs">
+      <DependentUpon>AddMapWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Mappools.xaml.cs">
+      <DependentUpon>Mappools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\NewPoolWindow.xaml.cs">
+      <DependentUpon>NewPoolWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -81,6 +90,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MatchWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddMapWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Mappools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\NewPoolWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

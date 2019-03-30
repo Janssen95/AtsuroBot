@@ -13,7 +13,7 @@ namespace JanssenBot
 {
     public class APIThing
     {
-        public static RoomState GetInfo(int channel)
+        public static RoomState GetRoomInfo(int channel)
         {
             string result;
             string page = $"https://osu.ppy.sh/api/get_match?k={MainWindow.apiKey}&mp={channel}";
@@ -25,6 +25,21 @@ namespace JanssenBot
 
             RoomState room = JsonConvert.DeserializeObject<RoomState>(result);
             return room;
+        }
+
+        public static MapInfo GetMapInfo(string mapLink, int mode)
+        {
+            string result;
+            string[] split = mapLink.Split('/');
+            string mapId = split[split.Count() - 1];
+            string page = $"https://osu.ppy.sh/api/get_beatmaps?k={MainWindow.apiKey}&b={mapId}&m={mode}&a=0";
+            using (WebClient wc = new WebClient())
+            {
+                result = wc.DownloadString(page);
+            }
+
+            List<MapInfo> info = JsonConvert.DeserializeObject<List<MapInfo>>(result);
+            return info[0];
         }
     }
 
@@ -73,5 +88,37 @@ namespace JanssenBot
     {
         public Match match { get; set; }
         public List<Game> games { get; set; }
+    }
+
+    public class MapInfo
+    {
+        public string beatmapset_id { get; set; }
+        public string beatmap_id { get; set; }
+        public string approved { get; set; }
+        public string total_length { get; set; }
+        public string hit_length { get; set; }
+        public string version { get; set; }
+        public string file_md5 { get; set; }
+        public string diff_size { get; set; }
+        public string diff_overall { get; set; }
+        public string diff_approach { get; set; }
+        public string diff_drain { get; set; }
+        public string mode { get; set; }
+        public string approved_date { get; set; }
+        public string last_update { get; set; }
+        public string artist { get; set; }
+        public string title { get; set; }
+        public string creator { get; set; }
+        public string creator_id { get; set; }
+        public string bpm { get; set; }
+        public string source { get; set; }
+        public string tags { get; set; }
+        public string genre_id { get; set; }
+        public string language_id { get; set; }
+        public string favourite_count { get; set; }
+        public string playcount { get; set; }
+        public string passcount { get; set; }
+        public string max_combo { get; set; }
+        public string difficultyrating { get; set; }
     }
 }
