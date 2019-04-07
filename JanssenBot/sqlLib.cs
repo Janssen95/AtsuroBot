@@ -24,7 +24,7 @@ namespace JanssenBot
         {
             try
             {
-                MySqlConnection conectar = new MySqlConnection("server=127.0.0.1;database=tourneydb;Uid=root;pwd=ultraxion1995;SslMode=None");
+                MySqlConnection conectar = new MySqlConnection("server=187.155.46.153;port=3306;database=tourneydb;Uid=Client;pwd=ultraxion1995;SslMode=None");
                 conectar.Open();
                 return conectar;
             }
@@ -186,6 +186,10 @@ namespace JanssenBot
 
         public static string CheckString(string value) //Para convertir los valores de string a la sintaxis correcta de MySql
         {
+            if (value.Contains('\x0027'))
+            {
+                value = value.Replace('\x0027', '`');
+            }
             if (value == string.Empty)
             {
                 value = "null";
@@ -193,6 +197,10 @@ namespace JanssenBot
             else
             {
                 value = "'" + value + "'";
+            }
+            if (value.Contains("'"))
+            {
+                value.Replace("'", "");
             }
             return value;
         }
@@ -202,6 +210,10 @@ namespace JanssenBot
             if (value == string.Empty)
             {
                 value = "null";
+            }
+            if (value.Contains("'"))
+            {
+                value.Replace("'", "");
             }
             return value;
         }

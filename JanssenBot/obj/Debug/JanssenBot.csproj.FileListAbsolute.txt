@@ -83,3 +83,15 @@ C:\Users\janss\source\repos\AtsuroBot\JanssenBot\obj\Debug\Windows\NewPoolWindow
 C:\Users\janss\source\repos\AtsuroBot\JanssenBot\obj\Debug\Windows\NewPoolWindow.baml
 C:\Users\janss\source\repos\AtsuroBot\JanssenBot\obj\Debug\Windows\AddMapWindow.g.cs
 C:\Users\janss\source\repos\AtsuroBot\JanssenBot\obj\Debug\Windows\AddMapWindow.baml
+D:\C# Projects\AtsuroBot\JanssenBot\obj\Debug\Windows\AddMapWindow.g.cs
+D:\C# Projects\AtsuroBot\JanssenBot\obj\Debug\Windows\Mappools.g.cs
+D:\C# Projects\AtsuroBot\JanssenBot\obj\Debug\Windows\NewPoolWindow.g.cs
+D:\C# Projects\AtsuroBot\JanssenBot\bin\Debug\Newtonsoft.Json.dll
+D:\C# Projects\AtsuroBot\JanssenBot\bin\Debug\Google.Protobuf.dll
+D:\C# Projects\AtsuroBot\JanssenBot\bin\Debug\MySql.Data.xml
+D:\C# Projects\AtsuroBot\JanssenBot\bin\Debug\Newtonsoft.Json.pdb
+D:\C# Projects\AtsuroBot\JanssenBot\bin\Debug\Newtonsoft.Json.xml
+D:\C# Projects\AtsuroBot\JanssenBot\obj\Debug\Windows\AddMapWindow.baml
+D:\C# Projects\AtsuroBot\JanssenBot\obj\Debug\Windows\Mappools.baml
+D:\C# Projects\AtsuroBot\JanssenBot\obj\Debug\Windows\NewPoolWindow.baml
+D:\C# Projects\AtsuroBot\JanssenBot\obj\Debug\JanssenBot.csproj.CopyComplete

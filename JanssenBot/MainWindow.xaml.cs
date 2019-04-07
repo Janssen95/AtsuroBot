@@ -35,21 +35,6 @@ namespace JanssenBot
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            Login win = new Login();
-            win.ShowDialog();
-            if(win.loggedIn == true)
-            {
-                username = win.UserBox.Text;
-                password = win.PassBox.Text;
-                apiKey = win.ApiBox.Text;
-            }
-            ircLib.Reconnect(username, password);
-            MessagesTimer();
-            MatchesTimer();
-        }
-
         private void MessagesTimer() //Inicia el timer para que cada cierto tiempo se revise si llegan mensajes
         {
             MessageTimer = new DispatcherTimer();
@@ -118,6 +103,21 @@ namespace JanssenBot
         {
             Windows.Mappools window = new Windows.Mappools();
             window.Show();
+        }
+
+        private void IrcLogIn_Click(object sender, RoutedEventArgs e)
+        {
+            Login win = new Login();
+            win.ShowDialog();
+            if (win.loggedIn == true)
+            {
+                username = win.UserBox.Text;
+                password = win.PassBox.Text;
+                apiKey = win.ApiBox.Text;
+                ircLib.Reconnect(username, password);
+                MessagesTimer();
+                MatchesTimer();
+            }
         }
     }
 }

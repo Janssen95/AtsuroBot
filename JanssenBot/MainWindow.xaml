@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:JanssenBot"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Loaded="Window_Loaded"
         Title="osu!Tournament Manager" Height="600" Width="900">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,7 +29,8 @@
         <TextBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="6" Name="ircBox" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
         <TextBox Grid.Column="0" Grid.Row="7" VerticalAlignment="Center" Name="SendBox" KeyDown="SendBox_KeyDown"/>
         <TextBox Grid.Column="0" Grid.Row="8" VerticalAlignment="Center" Name="ChannelBox" />
-        <Button Name="NewMatch" Grid.Row="6" Grid.Column="3" Content="Nueva Match" Click="NewMatch_Click"/>
+        <Button Grid.Column="3" Grid.Row="2" Name="IrcLogIn" Content="Connect to Bancho" Click="IrcLogIn_Click" />
+        <Button Name="NewMatch" Grid.Row="6" Grid.Column="3" Content="New Match" Click="NewMatch_Click"/>
         <Button Name="MappoolBtn" Grid.Row="4" Grid.Column="3" Content="Mappools" Click="MappoolBtn_Click" />
     </Grid>
 </Window>
